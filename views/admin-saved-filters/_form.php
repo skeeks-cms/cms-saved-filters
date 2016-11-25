@@ -106,15 +106,13 @@ JS
 --><?/* endif; */?>
 
 
-<?= $form->buttonsStandart($model, ['save', 'close']); ?>
+<?= $form->buttonsStandart($model); ?>
 <? if ($handler) : ?>
 
-    <hr />
-    <?= $handler->renderWidget($form); ?>
-    <?/*= \skeeks\cms\import\widgets\ImportWidget::widget([
-        'activeForm' => $form
-    ]); */?>
-    <br /><br />
+    <!--<hr />
+    <?/*= $handler->renderWidget($form); */?>
+
+    <br /><br />-->
 <? endif; ?>
 
 <?php ActiveForm::end(); ?>
