@@ -8,6 +8,7 @@
 namespace skeeks\cms\savedFilters;
 use skeeks\cms\base\ConfigFormInterface;
 use skeeks\cms\import\models\ImportTask;
+use skeeks\cms\savedFilters\models\SavedFilters;
 use yii\base\Component;
 use yii\base\Model;
 use yii\widgets\ActiveForm;
@@ -30,9 +31,9 @@ abstract class SavedFiltersHandler extends Model implements SavedFiltersHandlerI
     public $name;
 
     /**
-     * @var ImportTask
+     * @var SavedFilters
      */
-    public $taskModel;
+    public $model;
 
     /**
      * @param ActiveForm $form

@@ -9,10 +9,10 @@
  * @date 10.09.2015
  */
 namespace yii\web;
-use skeeks\cms\import\ImportComponent;
+use skeeks\cms\savedFilters\models\SavedFilters;
 
 /**
- * @property ImportComponent $cmsImport
+ * @property SavedFilters $savedFilters
 
  * Class Application
  * @package yii\web

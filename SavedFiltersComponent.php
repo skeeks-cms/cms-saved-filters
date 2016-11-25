@@ -30,7 +30,7 @@ class SavedFiltersComponent extends Component
     }
 
     /**
-     * @return ImportHandlerInterface[] list of handlers.
+     * @return SavedFiltersHandler[] list of handlers.
      */
     public function getHandlers()
     {
@@ -44,7 +44,7 @@ class SavedFiltersComponent extends Component
 
     /**
      * @param string $id service id.
-     * @return HandlerProvider auth client instance.
+     * @return SavedFiltersHandler auth client instance.
      * @throws InvalidParamException on non existing client request.
      */
     public function getHandler($id)
@@ -73,7 +73,7 @@ class SavedFiltersComponent extends Component
      * Creates auth client instance from its array configuration.
      * @param string $id auth client id.
      * @param array $config auth client instance configuration.
-     * @return ClientInterface auth client instance.
+     * @return SavedFiltersHandler auth client instance.
      */
     protected function createHandler($id, $config)
     {
