@@ -1,4 +1,4 @@
-SkeekS CMS import
+SkeekS CMS saved filters
 ===================================
 
 Installation
