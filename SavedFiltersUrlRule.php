@@ -41,7 +41,7 @@ class SavedFiltersUrlRule
      */
     public function createUrl($manager, $route, $params)
     {
-        if ($route == 'saved-filters/saved-filters/view')
+        if ($route == 'savedFilters/saved-filters/view')
         {
             $suffix             = (string) ($this->suffix === null ? $manager->suffix : $this->suffix);
 
@@ -147,7 +147,7 @@ class SavedFiltersUrlRule
         if ($treeNode)
         {
             $params['id']        = $treeNode->id;
-            return ['saved-filters/saved-filters/view', $params];
+            return ['savedFilters/saved-filters/view', $params];
         } else
         {
             return false;

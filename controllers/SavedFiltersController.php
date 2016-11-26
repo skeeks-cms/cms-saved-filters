@@ -30,7 +30,7 @@ class SavedFiltersController extends Controller
 
         $this->_initStandartMetaData();
 
-        return $this->render($viewFile, [
+        return $this->render($this->action->id, [
             'model' => $this->model
         ]);
 

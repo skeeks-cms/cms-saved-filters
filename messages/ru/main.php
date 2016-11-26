@@ -10,4 +10,5 @@ return [
     'Description short' => 'Короткое описание',
     'Description full' => 'Полное описание',
     'Handler settings' => 'Настройки обработчика',
+    'Saved filter' => 'Сохраненный фильтр',
 ];

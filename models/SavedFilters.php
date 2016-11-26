@@ -36,6 +36,7 @@ use yii\helpers\Url;
  * @property string $meta_keywords
  *
  * @property string $url
+ * @property SavedFiltersHandler $handler
  *
  * @property CmsStorageFile $image
  */
@@ -163,7 +164,7 @@ class SavedFilters extends \skeeks\cms\models\Core
      */
     public function getUrl($scheme = false)
     {
-        return Url::to(['saved-filters/saved-filters/view', 'id' => $this->id], $scheme);
+        return Url::to(['/savedFilters/saved-filters/view', 'id' => $this->id], $scheme);
     }
 
 

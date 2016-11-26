@@ -7,6 +7,24 @@ return [
             'class'     => 'skeeks\cms\savedFilters\SavedFiltersComponent',
         ],
 
+        'urlManager' => [
+            'rules' => [
+                'skeeks\cms\savedFilters\SavedFiltersUrlRule' => [
+                    'class' => 'skeeks\cms\savedFilters\SavedFiltersUrlRule',
+                ],
+            ]
+        ],
+
+        'cms' =>
+        [
+            'relatedHandlers' => [
+                'skeeks\cms\savedFilters\RelatedHandlerSavedFilter' =>
+                [
+                    'class' => 'skeeks\cms\savedFilters\RelatedHandlerSavedFilter'
+                ]
+            ],
+        ],
+
         'i18n' => [
             'translations' =>
             [

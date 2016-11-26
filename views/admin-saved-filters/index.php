@@ -35,6 +35,18 @@
                 {
                     return $importTask->handler->name;
                 }
+            ],
+            [
+                'class' => \yii\grid\DataColumn::className(),
+                'format' => 'raw',
+                'value'  => function(\skeeks\cms\savedFilters\models\SavedFilters $savedFilters)
+                {
+                    return \yii\helpers\Html::a('<i class="glyphicon glyphicon-arrow-right"></i>', $savedFilters->url, [
+                        'data-pjax' => 0,
+                        'target' => '_blank',
+                        'class' => 'btn btn-default btn-sm'
+                    ]);
+                }
             ]
         ]
 
