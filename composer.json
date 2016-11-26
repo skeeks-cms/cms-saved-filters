@@ -1,6 +1,6 @@
 {
 	"name": "skeeks/cms-saved-filters",
-	"description": "Universal import data",
+	"description": "Universal saved filters",
 	"keywords": ["yii", "skeeks", "framework", "component"],
   	"homepage": "http://cms.skeeks.com/",
 	"type": "yii2-extension",
