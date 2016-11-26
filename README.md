@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-import "*"
+php composer.phar require --prefer-dist skeeks/cms-saved-filters "*"
 ```
 
 or add
 
 ```
-"skeeks/cms-import": "*"
+"skeeks/cms-saved-filters": "*"
 ```
 
 Configuration app
@@ -25,34 +25,48 @@ Configuration app
 
 'components' =>
 [
+    'savedFilters' => [
+        'class'     => 'skeeks\cms\savedFilters\SavedFiltersComponent',
+    ],
 
-    'components' =>
-    [
-        'cmsImport' => [
-            'class'     => 'skeeks\cms\import\ImportComponent',
-        ],
-
-        'i18n' => [
-            'translations' =>
-            [
-                'skeeks/import' => [
-                    'class'             => 'yii\i18n\PhpMessageSource',
-                    'basePath'          => '@skeeks/cms/import/messages',
-                    'fileMap' => [
-                        'skeeks/import' => 'main.php',
-                    ],
-                ]
-            ]
+    'urlManager' => [
+        'rules' => [
+            'skeeks\cms\savedFilters\SavedFiltersUrlRule' => [
+                'class' => 'skeeks\cms\savedFilters\SavedFiltersUrlRule',
+            ],
         ]
     ],
 
-    'modules' =>
+    'cms' =>
     [
-        'cmsImport' => [
-            'class'         => 'skeeks\cms\import\ImportModule',
+        'relatedHandlers' => [
+            'skeeks\cms\savedFilters\RelatedHandlerSavedFilter' =>
+            [
+                'class' => 'skeeks\cms\savedFilters\RelatedHandlerSavedFilter'
+            ]
+        ],
+    ],
+
+    'i18n' => [
+        'translations' =>
+        [
+            'skeeks/savedFilters' => [
+                'class'             => 'yii\i18n\PhpMessageSource',
+                'basePath'          => '@skeeks/cms/savedFilters/messages',
+                'fileMap' => [
+                    'skeeks/savedFilters' => 'main.php',
+                ],
+            ]
         ]
     ]
-];
+],
+
+'modules' =>
+[
+    'savedFilters' => [
+        'class'         => 'skeeks\cms\savedFilters\SavedFiltersModule',
+    ]
+]
 
 ```
 
@@ -60,7 +74,7 @@ Configuration app
 * [Web site](http://en.cms.skeeks.com)
 * [Web site (rus)](http://cms.skeeks.com)
 * [Author](http://skeeks.com)
-* [ChangeLog](https://github.com/skeeks-cms/cms-import/blob/master/CHANGELOG.md)
+* [ChangeLog](https://github.com/skeeks-cms/cms-saved-filters/blob/master/CHANGELOG.md)
 
 
 ___
