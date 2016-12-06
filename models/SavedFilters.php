@@ -69,6 +69,7 @@ class SavedFilters extends \skeeks\cms\models\Core
             [
                 'class'                             => SeoPageName::className(),
                 'generatedAttribute'                => 'code',
+                'maxLenth'                          => 255,
             ]
         ]);
     }

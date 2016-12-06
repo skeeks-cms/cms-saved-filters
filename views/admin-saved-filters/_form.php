@@ -80,6 +80,11 @@ JS
     ]);
 ?>
 
+    <?= \skeeks\cms\modules\admin\widgets\BlockTitleWidget::widget(['content' => 'SEO']); ?>
+    <?= $form->field($model, 'meta_title'); ?>
+    <?= $form->field($model, 'meta_keywords')->textarea(['rows' => 3]); ?>
+    <?= $form->field($model, 'meta_description')->textarea(['rows' => 3]); ?>
+
     <?= $form->field($model, 'component')->listBox(array_merge(['' => ' - '], \yii\helpers\ArrayHelper::map(
             \Yii::$app->savedFilters->handlers, 'id', 'name'
         )), [
