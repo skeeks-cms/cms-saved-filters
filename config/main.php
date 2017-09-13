@@ -21,7 +21,11 @@ return [
                 'skeeks\cms\savedFilters\RelatedHandlerSavedFilter' =>
                 [
                     'class' => 'skeeks\cms\savedFilters\RelatedHandlerSavedFilter'
-                ]
+                ],
+                /*'skeeks\cms\savedFilters\handlers\ShopElementsHandler' =>
+                [
+                    'class' => 'skeeks\cms\savedFilters\handlers\ShopElementsHandler'
+                ]*/
             ],
         ],
 
