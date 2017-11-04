@@ -3,11 +3,11 @@
 namespace skeeks\cms\savedFilters\models;
 
 use skeeks\cms\models\behaviors\HasStorageFile;
-use skeeks\cms\models\behaviors\SeoPageName;
 use skeeks\cms\models\behaviors\Serialize;
 use skeeks\cms\models\CmsStorageFile;
 use skeeks\cms\models\CmsUser;
 use skeeks\cms\savedFilters\SavedFiltersHandler;
+use skeeks\yii2\slug\SlugBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -65,10 +65,11 @@ class SavedFilters extends \skeeks\cms\models\Core
                 'fields'    => ['image_id']
             ],
 
-            SeoPageName::className() =>
+            SlugBehavior::class =>
             [
-                'class'                             => SeoPageName::className(),
-                'generatedAttribute'                => 'code',
+                'class'                             => SlugBehavior::class,
+                'attribute'                         => 'name',
+                'slugAttribute'                     => 'code',
                 'maxLenth'                          => 255,
             ]
         ]);
