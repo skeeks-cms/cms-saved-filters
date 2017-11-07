@@ -15,13 +15,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist skeeks/cms-saved-filters-saved-filters "*"
+php composer.phar require --prefer-dist skeeks/cms-saved-filters "*"
 ```
 
 or add
 
 ```
-"skeeks/cms-saved-filters-saved-filters": "*"
+"skeeks/cms-saved-filters": "*"
 ```
 
 Configuration app
