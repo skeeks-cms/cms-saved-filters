@@ -23,5 +23,17 @@
         "psr-4": {
             "skeeks\\cms\\savedFilters\\": "src/"
         }
+    },
+    "extra": {
+        "config-plugin": {
+            "web": [
+                "src/config/common.php",
+                "src/config/web.php"
+            ],
+            "console": [
+                "src/config/common.php",
+                "src/config/console.php"
+            ]
+        }
     }
 }

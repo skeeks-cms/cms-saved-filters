@@ -70,7 +70,7 @@ class SavedFilters extends \skeeks\cms\models\Core
                 'class'                             => SlugBehavior::class,
                 'attribute'                         => 'name',
                 'slugAttribute'                     => 'code',
-                'maxLenth'                          => 255,
+                'maxLength'                         => 255,
             ]
         ]);
     }
