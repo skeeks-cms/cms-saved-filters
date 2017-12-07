@@ -53,15 +53,13 @@ class m161125_100558_create_table__saved_filters extends Migration
 
         ], $tableOptions);
 
-        $this->createIndex('updated_by', '{{%saved_filters}}', 'updated_by');
-        $this->createIndex('created_by', '{{%saved_filters}}', 'created_by');
-        $this->createIndex('created_at', '{{%saved_filters}}', 'created_at');
-        $this->createIndex('updated_at', '{{%saved_filters}}', 'updated_at');
+        $this->createIndex('saved_filters__updated_by_ix', '{{%saved_filters}}', 'updated_by');
+        $this->createIndex('saved_filters__created_by_ix', '{{%saved_filters}}', 'created_by');
+        $this->createIndex('saved_filters__created_at_ix', '{{%saved_filters}}', 'created_at');
+        $this->createIndex('saved_filters__updated_at_ix', '{{%saved_filters}}', 'updated_at');
 
-        $this->createIndex('name', '{{%saved_filters}}', 'name');
-        $this->createIndex('image_id', '{{%saved_filters}}', 'image_id');
-
-        $this->execute("ALTER TABLE {{%saved_filters}} COMMENT = 'Saved filters';");
+        $this->createIndex('saved_filters__name', '{{%saved_filters}}', 'name');
+        $this->createIndex('saved_filters__image_id', '{{%saved_filters}}', 'image_id');
 
         $this->addForeignKey(
             'saved_filters__created_by', "{{%saved_filters}}",
