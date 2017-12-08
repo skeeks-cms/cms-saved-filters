@@ -5,7 +5,9 @@
  * @copyright 2010 SkeekS (СкикС)
  * @date 24.05.2015
  */
+
 namespace skeeks\cms\savedFilters;
+
 use skeeks\cms\models\CmsTree;
 use skeeks\cms\models\Tree;
 use skeeks\cms\savedFilters\models\SavedFilters;
@@ -25,8 +27,7 @@ class SavedFiltersUrlRule
 {
     public function init()
     {
-        if ($this->name === null)
-        {
+        if ($this->name === null) {
             $this->name = __CLASS__;
         }
     }
@@ -41,42 +42,34 @@ class SavedFiltersUrlRule
      */
     public function createUrl($manager, $route, $params)
     {
-        if ($route == 'savedFilters/saved-filters/view')
-        {
-            $suffix             = (string) ($this->suffix === null ? $manager->suffix : $this->suffix);
+        if ($route == 'savedFilters/saved-filters/view') {
+            $suffix = (string)($this->suffix === null ? $manager->suffix : $this->suffix);
 
-            $id          = (int) ArrayHelper::getValue($params, 'id');
-            $treeModel   = ArrayHelper::getValue($params, 'model');
+            $id = (int)ArrayHelper::getValue($params, 'id');
+            $treeModel = ArrayHelper::getValue($params, 'model');
 
-            if (!$id && !$treeModel)
-            {
+            if (!$id && !$treeModel) {
                 return false;
             }
 
-            if ($treeModel && $treeModel instanceof Tree)
-            {
+            if ($treeModel && $treeModel instanceof Tree) {
                 $tree = $treeModel;
                 self::$models[$treeModel->id] = $treeModel;
-            } else
-            {
-                if (!$tree = ArrayHelper::getValue(self::$models, $id))
-                {
+            } else {
+                if (!$tree = ArrayHelper::getValue(self::$models, $id)) {
                     $tree = SavedFilters::findOne(['id' => $id]);
                     self::$models[$id] = $tree;
                 }
             }
 
-            if (!$tree)
-            {
+            if (!$tree) {
                 return false;
             }
 
-            if ($tree->code)
-            {
+            if ($tree->code) {
                 //$url = $tree->dir . ((bool) \Yii::$app->seo->useLastDelimetrTree ? DIRECTORY_SEPARATOR : "") . (\Yii::$app->urlManager->suffix ? \Yii::$app->urlManager->suffix : '');
                 $url = $tree->code . $suffix;
-            } else
-            {
+            } else {
                 $url = "";
             }
 
@@ -108,29 +101,39 @@ class SavedFiltersUrlRule
             return false;
         }
 
-        $pathInfo           = $request->getPathInfo();
+        $suffix = (string)($this->suffix === null ? $manager->suffix : $this->suffix);
+        $pathInfo = $request->getPathInfo();
+
+        $normalized = false;
+        if ($this->hasNormalizer($manager)) {
+            $pathInfo = $this->getNormalizer($manager)->normalizePathInfo($pathInfo, $suffix, $normalized);
+        }
+        if ($suffix !== '' && $pathInfo !== '') {
+            $n = strlen($suffix);
+            if (substr_compare($pathInfo, $suffix, -$n, $n) === 0) {
+                $pathInfo = substr($pathInfo, 0, -$n);
+                if ($pathInfo === '') {
+                    // suffix alone is not allowed
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
         if ($this->host !== null) {
             $pathInfo = strtolower($request->getHostInfo()) . ($pathInfo === '' ? '' : '/' . $pathInfo);
         }
 
 
-        $params             = $request->getQueryParams();
-        $suffix             = (string)($this->suffix === null ? $manager->suffix : $this->suffix);
-        $treeNode           = null;
+        $params = $request->getQueryParams();
+        $suffix = (string)($this->suffix === null ? $manager->suffix : $this->suffix);
+        $treeNode = null;
 
         $originalDir = $pathInfo;
-        if ($suffix)
-        {
+        if ($suffix) {
             $originalDir = substr($pathInfo, 0, (strlen($pathInfo) - strlen($suffix)));
         }
-
-        $dependency = new TagDependency([
-            'tags'      =>
-            [
-                (new Tree())->getTableCacheTag(),
-            ],
-        ]);
-
 
         if (!$pathInfo) //главная страница
         {
@@ -139,18 +142,21 @@ class SavedFiltersUrlRule
         } else //второстепенная страница
         {
             $treeNode = SavedFilters::find()->where([
-                "code"                          => $originalDir,
+                "code" => $originalDir,
             ])->one();
         }
 
-
-        if ($treeNode)
-        {
-            $params['id']        = $treeNode->id;
-            return ['savedFilters/saved-filters/view', $params];
-        } else
-        {
+        if (!$treeNode) {
             return false;
+        }
+
+        $params['id'] = $treeNode->id;
+        if ($normalized) {
+
+            // pathInfo was changed by normalizer - we need also normalize route
+            return $this->getNormalizer($manager)->normalizeRoute(['savedFilters/saved-filters/view', $params]);
+        } else {
+            return ['savedFilters/saved-filters/view', $params];
         }
     }
 }
