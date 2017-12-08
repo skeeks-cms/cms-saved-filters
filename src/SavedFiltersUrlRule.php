@@ -151,6 +151,8 @@ class SavedFiltersUrlRule
         }
 
         $params['id'] = $treeNode->id;
+        \Yii::info('Found saved filter: ' . $treeNode->id);
+
         if ($normalized) {
 
             // pathInfo was changed by normalizer - we need also normalize route
