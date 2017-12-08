@@ -2,6 +2,7 @@
 
 namespace skeeks\cms\savedFilters\models;
 
+use skeeks\cms\models\behaviors\HasJsonFieldsBehavior;
 use skeeks\cms\models\behaviors\HasStorageFile;
 use skeeks\cms\models\behaviors\Serialize;
 use skeeks\cms\models\CmsStorageFile;
@@ -53,9 +54,9 @@ class SavedFilters extends \skeeks\cms\models\Core
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            Serialize::className() =>
+            HasJsonFieldsBehavior::className() =>
             [
-                'class' => Serialize::className(),
+                'class' => HasJsonFieldsBehavior::className(),
                 'fields' => ['component_settings']
             ],
 
