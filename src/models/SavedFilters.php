@@ -6,6 +6,7 @@ use skeeks\cms\models\behaviors\HasJsonFieldsBehavior;
 use skeeks\cms\models\behaviors\HasStorageFile;
 use skeeks\cms\models\behaviors\Serialize;
 use skeeks\cms\models\CmsStorageFile;
+use skeeks\cms\models\CmsTree;
 use skeeks\cms\models\CmsUser;
 use skeeks\cms\savedFilters\SavedFiltersHandler;
 use skeeks\yii2\slug\SlugBehavior;
@@ -35,11 +36,13 @@ use yii\helpers\Url;
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keywords
+ * @property integer $cms_tree_id
  *
  * @property string $url
  * @property SavedFiltersHandler $handler
  *
  * @property CmsStorageFile $image
+ * @property CmsTree $cmsTree
  */
 class SavedFilters extends \skeeks\cms\models\Core
 {
@@ -82,7 +85,7 @@ class SavedFilters extends \skeeks\cms\models\Core
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['created_by', 'updated_by', 'created_at', 'updated_at', 'image_id', 'priority', 'is_active'], 'integer'],
+            [['created_by', 'updated_by', 'created_at', 'updated_at', 'image_id', 'priority', 'is_active', 'cms_tree_id'], 'integer'],
             [['name', 'component'], 'required'],
             [['description_short', 'description_full', 'meta_description', 'meta_keywords'], 'string'],
             [['name', 'code', 'description_short_type', 'description_full_type', 'component'], 'string', 'max' => 255],
@@ -121,6 +124,7 @@ class SavedFilters extends \skeeks\cms\models\Core
             'meta_title' => Yii::t('skeeks/savedFilters', 'Meta Title'),
             'meta_description' => Yii::t('skeeks/savedFilters', 'Meta Description'),
             'meta_keywords' => Yii::t('skeeks/savedFilters', 'Meta Keywords'),
+            'cms_tree_id' => Yii::t('skeeks/savedFilters', 'Section'),
         ]);
     }
 
@@ -167,8 +171,15 @@ class SavedFilters extends \skeeks\cms\models\Core
      */
     public function getUrl($scheme = false)
     {
+        if ($this->cmsTree) {
+            return $this->cmsTree->url;
+        }
+
         return Url::to(['/savedFilters/saved-filters/view', 'id' => $this->id], $scheme);
     }
 
+    public function getCmsTree() {
+        return $this->hasOne(CmsTree::className(), ['id' => 'cms_tree_id']);
+    }
 
 }
