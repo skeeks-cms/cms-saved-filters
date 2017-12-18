@@ -124,7 +124,7 @@ class SavedFilters extends \skeeks\cms\models\Core
             'meta_title' => Yii::t('skeeks/savedFilters', 'Meta Title'),
             'meta_description' => Yii::t('skeeks/savedFilters', 'Meta Description'),
             'meta_keywords' => Yii::t('skeeks/savedFilters', 'Meta Keywords'),
-            'cms_tree_id' => Yii::t('skeeks/savedFilters', 'Section'),
+            'cms_tree_id' => Yii::t('skeeks/cms', 'Section'),
         ]);
     }
 

@@ -66,6 +66,14 @@ JS
     \skeeks\cms\widgets\formInputs\StorageImage::className()
 ); ?>
 
+
+<?= $form->field($model, 'cms_tree_id')->widget(
+    \skeeks\cms\widgets\formInputs\selectTree\SelectTreeInputWidget::class,
+    [
+        'multiple' => false,
+    ]
+); ?>
+
 <?= $form->field($model, 'description_short')->widget(
     \skeeks\cms\widgets\formInputs\comboText\ComboTextInputWidget::className(),
     [
