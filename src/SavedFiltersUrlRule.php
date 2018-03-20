@@ -131,9 +131,6 @@ class SavedFiltersUrlRule
         $treeNode = null;
 
         $originalDir = $pathInfo;
-        if ($suffix) {
-            $originalDir = substr($pathInfo, 0, (strlen($pathInfo) - strlen($suffix)));
-        }
 
         if (!$pathInfo) //главная страница
         {
