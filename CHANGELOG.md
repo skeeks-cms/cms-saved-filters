@@ -3,6 +3,7 @@ CHANGELOG
 
 1.0.2
 -----------------
+ * Serialize to jsonable
  * Fixed url manager
  
 1.0.1
