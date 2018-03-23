@@ -150,7 +150,7 @@ class SavedFilters extends \skeeks\cms\models\Core
                 /**
                  * @var $component Component
                  */
-                $component = \Yii::$app->savedFilters->getHandler($this->component);
+                $component = clone \Yii::$app->savedFilters->getHandler($this->component);
                 $component->model = $this;
                 $component->load($this->component_settings, "");
 

@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.0.3.pre
+-----------------
+ * Clone handler
+ 
 1.0.2
 -----------------
  * Serialize to jsonable
