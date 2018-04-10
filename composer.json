@@ -17,7 +17,8 @@
 		}
 	],
 	"require": {
-		"skeeks/cms": "~5.0 || dev-master@dev"
+		"skeeks/cms": "~5.0 || dev-master@dev",
+		"skeeks/cms-export-sitemap": "~1.1.0 || dev-master@dev"
 	},
     "autoload": {
         "psr-4": {

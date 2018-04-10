@@ -18,7 +18,17 @@ return [
                     ],
                 ]
             ]
-        ]
+        ],
+
+        'cmsExport' => [
+            'handlers'     =>
+            [
+                'skeeks\cms\savedFilters\ExportSitemapHandler' =>
+                [
+                    'class' => 'skeeks\cms\savedFilters\ExportSitemapHandler'
+                ]
+            ]
+        ],
     ],
 
     'modules' =>

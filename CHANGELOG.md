@@ -1,8 +1,9 @@
 CHANGELOG
 ==============
 
-1.0.3.pre
+1.0.3
 -----------------
+ * Use skeeks/cms-export-sitemap
  * Serialize or jsonable
  * Clone handler
  
