@@ -3,6 +3,14 @@ return [
 
     'components' =>
     [
+        'urlManager' => [
+            'rules' => [
+                'skeeks\cms\savedFilters\SavedFiltersUrlRule' => [
+                    'class' => 'skeeks\cms\savedFilters\SavedFiltersUrlRule',
+                ],
+            ]
+        ],
+
         'savedFilters' => [
             'class'     => 'skeeks\cms\savedFilters\SavedFiltersComponent',
         ],

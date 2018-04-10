@@ -15,14 +15,6 @@ return [
 
     'components' =>
     [
-        'urlManager' => [
-            'rules' => [
-                'skeeks\cms\savedFilters\SavedFiltersUrlRule' => [
-                    'class' => 'skeeks\cms\savedFilters\SavedFiltersUrlRule',
-                ],
-            ]
-        ],
-
         'cms' =>
         [
             'relatedHandlers' => [

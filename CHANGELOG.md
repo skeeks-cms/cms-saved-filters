@@ -1,6 +1,10 @@
 CHANGELOG
 ==============
 
+1.1.0.1
+-----------------
+ * Fixed console url
+
 1.1.0
 -----------------
  * Use skeeks/cms-export-sitemap
