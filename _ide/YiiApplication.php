@@ -9,10 +9,10 @@
  * @date 10.09.2015
  */
 namespace yii\web;
-use skeeks\cms\savedFilters\models\SavedFilters;
+use skeeks\cms\savedFilters\SavedFiltersComponent;
 
 /**
- * @property SavedFilters $savedFilters
+ * @property SavedFiltersComponent $savedFilters
 
  * Class Application
  * @package yii\web

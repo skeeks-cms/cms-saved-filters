@@ -8,6 +8,7 @@ use skeeks\cms\models\behaviors\Serialize;
 use skeeks\cms\models\CmsStorageFile;
 use skeeks\cms\models\CmsTree;
 use skeeks\cms\models\CmsUser;
+use skeeks\cms\savedFilters\SavedFiltersComponent;
 use skeeks\cms\savedFilters\SavedFiltersHandler;
 use skeeks\yii2\slug\SlugBehavior;
 use Yii;
@@ -56,13 +57,7 @@ class SavedFilters extends \skeeks\cms\models\Core
 
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), [
-            HasJsonFieldsBehavior::className() =>
-            [
-                'class' => HasJsonFieldsBehavior::className(),
-                'fields' => ['component_settings']
-            ],
-
+        $result = ArrayHelper::merge(parent::behaviors(), [
             HasStorageFile::className() =>
             [
                 'class'     => HasStorageFile::className(),
@@ -77,6 +72,20 @@ class SavedFilters extends \skeeks\cms\models\Core
                 'maxLength'                         => 255,
             ]
         ]);
+
+        if (\Yii::$app->savedFilters->saveSettingsToDb == SavedFiltersComponent::SAVE_AS_JSON) {
+            $result[HasJsonFieldsBehavior::class] = [
+                'class' => HasJsonFieldsBehavior::class,
+                'fields' => ['component_settings']
+            ];
+        } else {
+            $result[Serialize::class] = [
+                'class' => Serialize::class,
+                'fields' => ['component_settings']
+            ];
+        }
+
+        return $result;
     }
 
     /**

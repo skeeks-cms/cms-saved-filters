@@ -33,6 +33,7 @@ Configuration app
 [
     'savedFilters' => [
         'class'     => 'skeeks\cms\savedFilters\SavedFiltersComponent',
+        'saveSettingsToDb' => 'json' // or serialize
     ],
 
     'urlManager' => [

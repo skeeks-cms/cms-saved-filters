@@ -18,6 +18,12 @@ use yii\helpers\ArrayHelper;
  */
 class SavedFiltersComponent extends Component
 {
+    const SAVE_AS_JSON = 'json';
+    const SAVE_AS_SERIALIZE = 'serialize';
+    /**
+     * @var string
+     */
+    public $saveSettingsToDb = self::SAVE_AS_JSON;
 
     private $_handlers = [];
 

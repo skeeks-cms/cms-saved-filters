@@ -3,6 +3,7 @@ CHANGELOG
 
 1.0.3.pre
 -----------------
+ * Serialize or jsonable
  * Clone handler
  
 1.0.2
