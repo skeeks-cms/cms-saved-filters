@@ -53,7 +53,20 @@ use skeeks\cms\modules\admin\widgets\form\ActiveFormUseTab as ActiveForm;
 
 
 JS
-); ?>
+);
+?>
+<? if ($model && $model->url) : ?>
+    <div class="sx-box sx-p-10 sx-bg-primary" style="margin-bottom: 10px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-left">
+                    Посмотреть на сайте: <a href='<?=$model->url;?>' target='_blank' data-pjax="0"><?=$model->name;?></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<? endif; ?>
 
     <?= \skeeks\cms\modules\admin\widgets\BlockTitleWidget::widget(['content' => 'Базовые настройки']); ?>
 
